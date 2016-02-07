@@ -24,12 +24,23 @@ function expenses(filepath) {
 
       return authors;
     })
+    .then((authors) => {
+      Object.keys(authors)
+        .forEach((author) => {
+          Object.keys(authors[author])
+            .forEach((month) => {
+              authors[author][month] = round(authors[author][month], 2);
+            });
+      });
+
+      return authors;
+    })
   .catch(debug);
 }
 
 function numbersFromString(input) {
-  input = input.replace('.', '');
-  input = input.replace(',', '.');
+  input = input.replace(/\./g, '');
+  input = input.replace(/,/g, '.');
 
   var res = input.match(/[+-]?\d+(\.\d+)?/g);
   res = res || [];
@@ -48,4 +59,9 @@ function sum(values, startValue) {
   }
 
   return sum(values, startValue + nextValues[0]);
+}
+
+// via http://www.jacklmoore.com/notes/rounding-in-javascript/
+function round(value, decimals) {
+  return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals);
 }

@@ -30,14 +30,19 @@ describe('the Whatsapp expenses module', () => {
       assert.deepEqual(output, [40000]);
     });
 
-    it('should work', () => {
+    it('should work for two numbers', () => {
       var output = expenseTracker._numbersFromString('40 2');
       assert.deepEqual(output, [40, 2]);
     });
 
-    it('should work', () => {
+    it('should work for three numbers', () => {
       var output = expenseTracker._numbersFromString('1 plus 2 is 3');
       assert.deepEqual(output, [1, 2, 3]);
+    });
+
+    it('should work for two floating point numbers', () => {
+      var output = expenseTracker._numbersFromString('15,49 29,67');
+      assert.deepEqual(output, [15.49, 29.67]);
     });
   });
 
