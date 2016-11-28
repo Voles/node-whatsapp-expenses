@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/Voles/node-whatsapp-expenses.git"
   },
+  "files": [
+    "index.js"
+  ],
   "keywords": [
     "whatsapp",
     "expenses"
